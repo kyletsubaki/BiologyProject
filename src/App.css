@@ -56,9 +56,8 @@ img.flex-fit {
     top: 0;
     left: 0;
     display: none;
-    min-height: 100%;
+    height: 100%;
     width: 100%;
-    overflow-y: auto;
     background-color: #0000003f;
     justify-content: center;
 }
@@ -83,6 +82,7 @@ article {
     padding: 2em;
     box-sizing: border-box;
     border-radius: 2em;
+    overflow-y: auto;
 }
 
 article.shown {
