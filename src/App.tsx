@@ -204,43 +204,43 @@ const pages: PageData[] = [
             <img className="image-small" src="deletion_effect.png" alt="Missing genes means missing proteins" />
             <h3>Patient Article</h3>
             <p>
-            Jimmy Lint is a three-year-old boy who lives with his parents, Lenny and Linda Lint, 
-            in a small town in the United States. He has a rare genetic disorder called distal 18q deletion syndrome, 
-            which causes various physical and developmental challenges. Despite the challenges, Jimmy is a happy and curious 
-            child who loves to explore and learn about the world around him. He currently attends a special needs preschool, 
-            where he receives individualized attention and care.
+                Jimmy Lint is a three-year-old boy who lives with his parents, Lenny and Linda Lint,
+                in a small town in the United States. He has a rare genetic disorder called distal 18q deletion syndrome,
+                which causes various physical and developmental challenges. Despite the challenges, Jimmy is a happy and curious
+                child who loves to explore and learn about the world around him. He currently attends a special needs preschool,
+                where he receives individualized attention and care.
             </p>
             <p>
-            When Jimmy was born, his parents immediately noticed that something was different about him. He had a club foot, 
-            cleft lip, skin folds covering his eye inner corners, and malformed ears. After undergoing numerous tests and 
-            evaluations, Jimmy was diagnosed with distal 18q deletion syndrome, a condition caused by a missing section of 
-            chromosome 18. The diagnosis was devastating for his parents, who were not familiar with the disorder and had never 
-            heard of it before.
+                When Jimmy was born, his parents immediately noticed that something was different about him. He had a club foot,
+                cleft lip, skin folds covering his eye inner corners, and malformed ears. After undergoing numerous tests and
+                evaluations, Jimmy was diagnosed with distal 18q deletion syndrome, a condition caused by a missing section of
+                chromosome 18. The diagnosis was devastating for his parents, who were not familiar with the disorder and had never
+                heard of it before.
             </p>
             <p>
-            The Lint family soon found themselves in the care of a team of medical professionals, including surgeons, geneticists, and 
-            neurologists. They worked together to develop a comprehensive treatment plan for Jimmy's various physical challenges. The 
-            family spent long hours at the hospital, driving back and forth for appointments and surgeries, and dealing with the stress 
-            of medical bills and insurance. It was a difficult time for everyone involved, especially Jimmy, who often cried and had 
-            nightmares at night.
+                The Lint family soon found themselves in the care of a team of medical professionals, including surgeons, geneticists, and
+                neurologists. They worked together to develop a comprehensive treatment plan for Jimmy's various physical challenges. The
+                family spent long hours at the hospital, driving back and forth for appointments and surgeries, and dealing with the stress
+                of medical bills and insurance. It was a difficult time for everyone involved, especially Jimmy, who often cried and had
+                nightmares at night.
             </p>
             <p>
-            After several surgeries, Jimmy's physical challenges were successfully addressed. However, his parents soon noticed that he 
-            was not developing mentally at the same rate as other children his age. They turned to neurologists and specialists for 
-            help, and after a series of tests and evaluations, Jimmy was diagnosed with developmental delays and hyperactivity. His 
-            parents were devastated, but determined to help him in any way they could.
-            They worked closely with counselors and teachers to develop an individualized education plan for 
-            Jimmy. He started attending a special needs preschool, where he received one-on-one attention and care 
-            from experienced teachers. The counselors and teachers were kind and patient with Jimmy, and he quickly felt 
-            comfortable and made progress towards learning. His parents were grateful for the support they received from the school 
-            and medical professionals, and they continued to work hard to give Jimmy the best care and support possible.
+                After several surgeries, Jimmy's physical challenges were successfully addressed. However, his parents soon noticed that he
+                was not developing mentally at the same rate as other children his age. They turned to neurologists and specialists for
+                help, and after a series of tests and evaluations, Jimmy was diagnosed with developmental delays and hyperactivity. His
+                parents were devastated, but determined to help him in any way they could.
+                They worked closely with counselors and teachers to develop an individualized education plan for
+                Jimmy. He started attending a special needs preschool, where he received one-on-one attention and care
+                from experienced teachers. The counselors and teachers were kind and patient with Jimmy, and he quickly felt
+                comfortable and made progress towards learning. His parents were grateful for the support they received from the school
+                and medical professionals, and they continued to work hard to give Jimmy the best care and support possible.
             </p>
             <p>
-            Despite the challenges posed by his condition, Jimmy is a resilient and curious child who loves to explore and learn about 
-            the world around him. With the help of his dedicated family and medical team, he has made progress in his development and 
-            has a bright future to look forward to. His parents are proud of his accomplishments and are determined to continue 
-            supporting him in any way they can. Jimmy's story is a testament to the power of love, determination, and the importance 
-            of specialized care and support for children with special needs.
+                Despite the challenges posed by his condition, Jimmy is a resilient and curious child who loves to explore and learn about
+                the world around him. With the help of his dedicated family and medical team, he has made progress in his development and
+                has a bright future to look forward to. His parents are proud of his accomplishments and are determined to continue
+                supporting him in any way they can. Jimmy's story is a testament to the power of love, determination, and the importance
+                of specialized care and support for children with special needs.
             </p>
         </>)
     },
@@ -355,8 +355,10 @@ function PagePopup({ disease: { name, content }, shown, handleClose }: { disease
 
     return (
         <article className={classList(['shown', animated], ['display', displayed])} onTransitionEnd={handleTransitionEnd}>
-            <button className="close-button" onClick={handleClose} />
-            <h2>{name}</h2>
+            <div className="article-header">
+                <h2>{name}</h2>
+                <button className="close-button" onClick={handleClose} />
+            </div>
             {content}
         </article>
     );

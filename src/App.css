@@ -60,7 +60,7 @@ h2,
 
 h2 {
     font-size: 2em;
-    margin-top: 0;
+    flex-grow: 1;
 }
 
 .subtitle {
@@ -86,6 +86,11 @@ h2 {
 .link:hover {
     transform: scale(1.05);
 }
+
+.link:active {
+    transform: scale(0.95);
+}
+
 
 img.flex-fit {
     object-fit: contain;
@@ -133,7 +138,7 @@ article {
     box-sizing: border-box;
     border-radius: 2em;
     overflow-y: auto;
-    transform: scale(0);
+    transform: scale(0.6);
     opacity: 0;
     transition: 0.5s;
 }
@@ -151,6 +156,7 @@ h2 {
     text-align: center;
     position: static;
     top: 0;
+    margin: 0;
 }
 
 .full-width {
@@ -163,15 +169,23 @@ h2 {
     margin: auto;
 }
 
+.article-header {
+    display: flex;
+    background: linear-gradient(white, white, transparent);
+    position: sticky;
+    top: -1em;
+    margin-top: -1em;
+    margin-left: -1em;
+    margin-right: -1em;
+    padding: 1em;
+}
+
 .close-button {
+    position: relative;
     height: 1.5em;
     width: 1.5em;
-    position: fixed;
-    top: 2em;
-    right: 2em;
     background-color: transparent;
     border: none;
-    z-index: 2;
     cursor: pointer;
 }
 
@@ -256,8 +270,14 @@ h2 {
         border-radius: 3em;
     }
 
-    .close-button {
-        top: 3em;
-        right: 3em;
+    .article-header {
+        display: flex;
+        background: linear-gradient(white, white, transparent);
+        position: sticky;
+        top: -3em;
+        margin-top: -3em;
+        margin-left: -3em;
+        margin-right: -3em;
+        padding: 2em;
     }
 }
