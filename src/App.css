@@ -149,7 +149,7 @@ article.display {
 
 h2 {
     text-align: center;
-    position: sticky;
+    position: static;
     top: 0;
 }
 
