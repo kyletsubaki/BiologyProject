@@ -122,12 +122,16 @@ img.flex-fit {
     display: none;
     height: 100%;
     width: 100%;
-    background-color: #0000003f;
     justify-content: center;
+    transition: 0.5s;
+}
+
+.overlay-root.display {
+    display: flex;
 }
 
 .overlay-root.shown {
-    display: flex;
+    background-color: #0000003f;
 }
 
 .overlay-background {
@@ -147,9 +151,17 @@ article {
     box-sizing: border-box;
     border-radius: 3em;
     overflow-y: auto;
+    transform: scale(0);
+    opacity: 0;
+    transition: 0.5s;
 }
 
 article.shown {
+    transform: scale(1);
+    opacity: 1;
+}
+
+article.display {
     display: block;
 }
 

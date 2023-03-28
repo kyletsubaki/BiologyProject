@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { classList } from './Util';
 
@@ -109,6 +109,18 @@ const pages: PageData[] = [
 function App() {
     const [page, setPage] = useState<number | null>(null);
 
+    useEffect(() => {
+        if (page !== null) {
+            const handleKeyUp = (event: KeyboardEvent) => {
+                if (event.key === "Escape" && page !== null) {
+                    setPage(null);
+                }
+            }
+            window.addEventListener('keyup', handleKeyUp);
+            return () => window.removeEventListener('keyup', handleKeyUp);
+        }
+    }, [page])
+
     return (
         <main>
             <header>
@@ -119,11 +131,42 @@ function App() {
                 <div className="grid-item center-section"><img src="standard.png" className="flex-fit" alt="Regular Chromosome 18p" /></div>
                 {pages.map((e, i) => <PageCard key={i} disease={e} onClick={() => setPage(i)} positionClass={['top-left-section', 'bottom-left-section', 'top-right-section', 'bottom-right-section', 'top-center-section'][i]} noTitle={i === 4} />)}
             </div>
-            <div className={classList('overlay-root', ['shown', page !== null])}>
-                <div className="overlay-background" onClick={() => setPage(null)}></div>
+            <Overlay onBackgroundClick={() => setPage(null)} shown={page !== null}>
                 {pages.map((e, i) => <PagePopup key={i} disease={e} shown={page === i} />)}
-            </div>
+            </Overlay>
         </main>
+    );
+}
+
+function Overlay({ onBackgroundClick, shown, children }: { onBackgroundClick: React.MouseEventHandler, shown: boolean, children: JSX.Element[] }) {
+    const [displayed, setDisplayed] = useState(false);
+    const [animated, setAnimated] = useState(false);
+
+    useEffect(() => {
+        if (displayed) {
+            setAnimated(true);
+        }
+    }, [displayed]);
+
+    useEffect(() => {
+        if (shown) {
+            setDisplayed(true);
+        } else {
+            setAnimated(false);
+        }
+    }, [shown]);
+
+    const handleTransitionEnd = () => {
+        if (!shown) {
+            setDisplayed(false);
+        }
+    };
+
+    return (
+        <div className={classList('overlay-root', ['display', displayed], ['shown', animated])} onTransitionEnd={handleTransitionEnd}>
+            <div className="overlay-background" onClick={onBackgroundClick}></div>
+            {children}
+        </div>
     );
 }
 
@@ -137,8 +180,31 @@ function PageCard({ disease: { name, image }, onClick, positionClass, noTitle = 
 }
 
 function PagePopup({ disease: { name, content }, shown }: { disease: PageData, shown: boolean }) {
+    const [displayed, setDisplayed] = useState(false);
+    const [animated, setAnimated] = useState(false);
+
+    useEffect(() => {
+        if (displayed) {
+            setTimeout(() => setAnimated(true), 10);
+        }
+    }, [displayed]);
+
+    useEffect(() => {
+        if (shown) {
+            setDisplayed(true);
+        } else {
+            setAnimated(false);
+        }
+    }, [shown]);
+
+    const handleTransitionEnd = () => {
+        if (!shown) {
+            setDisplayed(false);
+        }
+    };
+
     return (
-        <article className={classList(['shown', shown])}>
+        <article className={classList(['shown', animated], ['display', displayed])} onTransitionEnd={handleTransitionEnd}>
             <h2>{name}</h2>
             {content}
         </article>
