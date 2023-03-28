@@ -96,7 +96,7 @@ const pages: PageData[] = [
     },
     {
         name: 'Central Dogma',
-        image: 'transcription.png',
+        image: 'transcription_thumbnail.png',
         content: (<>
             <p className="subtitle">Transcription</p>
             <img className="full-width" src="transcription.png" alt="Transcription" />
@@ -111,12 +111,12 @@ function App() {
 
     return (
         <main>
+            <header>
+                <h1>Chromosome 18</h1>
+                <p className="subtitle">Sheraz Fayyaz, Josiah Fu, Kyle Tsubaki, Jacob Wallis</p>
+            </header>
             <div className="grid">
-                <header>
-                    <h1>Chromosome 18</h1>
-                    <p className="subtitle">Sheraz Fayyaz, Josiah Fu, Kyle Tsubaki, Jacob Wallis</p>
-                </header>
-                <section className="center-section"><img src="standard.png" className="flex-fit" alt="Regular Chromosome 18p" /></section>
+                <div className="grid-item center-section"><img src="standard.png" className="flex-fit" alt="Regular Chromosome 18p" /></div>
                 {pages.map((e, i) => <PageCard key={i} disease={e} onClick={() => setPage(i)} positionClass={['top-left-section', 'bottom-left-section', 'top-right-section', 'bottom-right-section', 'top-center-section'][i]} noTitle={i === 4} />)}
             </div>
             <div className={classList('overlay-root', ['shown', page !== null])}>
@@ -129,10 +129,10 @@ function App() {
 
 function PageCard({ disease: { name, image }, onClick, positionClass, noTitle = false }: { disease: PageData, onClick: () => void, positionClass: string, noTitle?: boolean }) {
     return (
-        <section className={'link ' + positionClass} onClick={onClick}>
-            {noTitle || <h2>{name}</h2>}
+        <button className={'grid-item link ' + positionClass} onClick={onClick}>
+            {noTitle || <p className="card-title">{name}</p>}
             <img src={image} className="flex-fit" alt={name} />
-        </section>
+        </button>
     );
 }
 
