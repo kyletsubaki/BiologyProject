@@ -30,6 +30,8 @@ header {
     align-items: stretch;
     padding: 1em;
     background-color: white;
+    position: sticky;
+    top: 0;
 }
 
 h1 {
