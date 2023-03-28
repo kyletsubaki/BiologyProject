@@ -108,7 +108,7 @@ function App() {
                 </header>
                 <section className="top-center-section"><img src="transcription.png" className="flex-fit" alt="Transcription" /></section>
                 <section className="center-section"><img src="standard.png" className="flex-fit" alt="Regular Chromosome 18p" /></section>
-                {diseases.map((e, i) => <DiseaseCard key={i} disease={e} onClick={() => setPage(i)} />)}
+                {diseases.map((e, i) => <DiseaseCard key={i} disease={e} onClick={() => setPage(i)} positionClass={['top-left-section', 'bottom-left-section', 'top-right-section', 'bottom-right-section'][i]} />)}
             </div>
             <div className={classList('overlay-root', ['shown', page !== null])}>
                 <div className="overlay-background" onClick={() => setPage(null)}></div>
@@ -118,9 +118,9 @@ function App() {
     );
 }
 
-function DiseaseCard({ disease: { name, image }, onClick }: { disease: Disease, onClick: () => void }) {
+function DiseaseCard({ disease: { name, image }, onClick, positionClass }: { disease: Disease, onClick: () => void, positionClass: string }) {
     return (
-        <section className="link" onClick={onClick}>
+        <section className={'link ' + positionClass} onClick={onClick}>
             <h2>{name}</h2>
             <img src={image} className="flex-fit" alt={name} />
         </section>
