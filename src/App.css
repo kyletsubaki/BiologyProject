@@ -131,7 +131,7 @@ article {
     margin: 1em;
     padding: 1em;
     box-sizing: border-box;
-    border-radius: 3em;
+    border-radius: 2em;
     overflow-y: auto;
     transform: scale(0);
     opacity: 0;
@@ -253,6 +253,7 @@ h2 {
     article {
         margin: 4em;
         padding: 3em;
+        border-radius: 3em;
     }
 
     .close-button {
