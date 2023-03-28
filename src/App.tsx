@@ -10,7 +10,7 @@ type Disease = {
 
 const diseases: Disease[] = [
     {
-        name: 'Monosmy 18p',
+        name: 'Monosomy 18q',
         image: 'monosomy.png',
         content: <p>
 
@@ -30,7 +30,7 @@ const diseases: Disease[] = [
         image: 'trisomy.png'
     },
     {
-        name: 'Tetrasomy 18q',
+        name: 'Tetrasomy 18p',
         image: 'tetrasomy.png'
     },
     {
