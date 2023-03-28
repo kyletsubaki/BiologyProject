@@ -66,6 +66,7 @@ h2 {
     background-color: white;
     border-radius: 2em;
     border: none;
+    align-items: stretch;
 }
 
 .link {
