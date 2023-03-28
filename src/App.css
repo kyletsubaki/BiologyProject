@@ -8,7 +8,7 @@ main {
 
 .grid {
     display: grid;
-    grid-template-rows: auto 1fr 1fr;
+    grid-template-rows: auto 2fr 1fr 3fr;
     grid-template-columns: 1fr 2fr 1fr;
     grid-auto-flow: column;
     height: 100%;
@@ -27,11 +27,16 @@ header {
     border-radius: 2em;
 }
 
+.subtitle {
+    text-align: center;
+}
+
 section {
     display: flex;
     flex-flow: column;
     background-color: white;
     border-radius: 2em;
+    overflow: hidden;
 }
 
 .link {
@@ -46,8 +51,13 @@ img.flex-fit {
     flex-grow: 1;
 }
 
+.top-center-section {
+    grid-row: 2 / 3;
+    grid-column: 2 / 3;
+}
+
 .center-section {
-    grid-row: 2 / 4;
+    grid-row: 3 / 5;
     grid-column: 2 / 3;
 }
 
@@ -91,4 +101,14 @@ article.shown {
 
 h2 {
     text-align: center;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.image-small {
+    width: 30em;
+    display: block;
+    margin: auto;
 }
