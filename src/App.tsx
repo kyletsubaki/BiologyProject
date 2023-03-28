@@ -2,33 +2,33 @@ import React, { useState } from 'react';
 import './App.css';
 import { classList } from './Util';
 
-type Disease = {
+type PageData = {
     name: string,
     image: string
     content: JSX.Element
 };
 
-const diseases: Disease[] = [
+const pages: PageData[] = [
     {
         name: 'Monosomy 18q',
         image: 'monosomy.png',
         content: (<>
             <img className="full-width" src="monosomy_karyotype.png" alt="Monosomy 18q Karyotype" />
             <p>
-            Monosomy 18p is a genetic condition that affects between 1:50,000 and 1:200,000 people. 
-            It is caused by the deletion of the short "arm" of the 18th chromosome during fetal 
-            development and can be detected prenatally through ultrasound. Women are more likely to 
-            be affected than men. While not everyone with Monosomy 18p exhibits symptoms in 
-            childhood, some may experience delays in developmental milestones and unfinished growth. 
-            Treatment is mainly aimed at improving quality of life through therapy, specialized 
-            education, medication, and surgery in extreme cases. The exact function of the condition 
-            on specific cells is not fully understood, but it mainly alters gene expression from the 
-            remaining chromosome. Monosomy 18p is not preventable and is entirely dependent on 
-            genetics. It is not typically fatal except in extreme cases when it is paired with 
-            another genetic condition.
+                Monosomy 18p is a genetic condition that affects between 1:50,000 and 1:200,000 people.
+                It is caused by the deletion of the short "arm" of the 18th chromosome during fetal
+                development and can be detected prenatally through ultrasound. Women are more likely to
+                be affected than men. While not everyone with Monosomy 18p exhibits symptoms in
+                childhood, some may experience delays in developmental milestones and unfinished growth.
+                Treatment is mainly aimed at improving quality of life through therapy, specialized
+                education, medication, and surgery in extreme cases. The exact function of the condition
+                on specific cells is not fully understood, but it mainly alters gene expression from the
+                remaining chromosome. Monosomy 18p is not preventable and is entirely dependent on
+                genetics. It is not typically fatal except in extreme cases when it is paired with
+                another genetic condition.
             </p>
             <img className="image-small" src="monosomy_effect.png" alt="A missing chromosomes means missing proteins" />
-        </>) 
+        </>)
     },
     {
         name: 'Trisomy 18',
@@ -93,6 +93,16 @@ const diseases: Disease[] = [
             </p>
             <img className="image-small" src="deletion_effect.png" alt="Missing genes means missing proteins" />
         </>)
+    },
+    {
+        name: 'Central Dogma',
+        image: 'transcription.png',
+        content: (<>
+            <p className="subtitle">Transcription</p>
+            <img className="full-width" src="transcription.png" alt="Transcription" />
+            <p className="subtitle">Translation</p>
+            <img className="full-width" src="translation.png" alt="Translation" />
+        </>)
     }
 ];
 
@@ -106,28 +116,27 @@ function App() {
                     <h1>Chromosome 18</h1>
                     <p className="subtitle">Sheraz Fayyaz, Josiah Fu, Kyle Tsubaki, Jacob Wallis</p>
                 </header>
-                <section className="top-center-section"><img src="transcription.png" className="flex-fit" alt="Transcription" /></section>
                 <section className="center-section"><img src="standard.png" className="flex-fit" alt="Regular Chromosome 18p" /></section>
-                {diseases.map((e, i) => <DiseaseCard key={i} disease={e} onClick={() => setPage(i)} positionClass={['top-left-section', 'bottom-left-section', 'top-right-section', 'bottom-right-section'][i]} />)}
+                {pages.map((e, i) => <PageCard key={i} disease={e} onClick={() => setPage(i)} positionClass={['top-left-section', 'bottom-left-section', 'top-right-section', 'bottom-right-section', 'top-center-section'][i]} noTitle={i === 4} />)}
             </div>
             <div className={classList('overlay-root', ['shown', page !== null])}>
                 <div className="overlay-background" onClick={() => setPage(null)}></div>
-                {diseases.map((e, i) => <DiseasePage key={i} disease={e} shown={page === i} />)}
+                {pages.map((e, i) => <PagePopup key={i} disease={e} shown={page === i} />)}
             </div>
         </main>
     );
 }
 
-function DiseaseCard({ disease: { name, image }, onClick, positionClass }: { disease: Disease, onClick: () => void, positionClass: string }) {
+function PageCard({ disease: { name, image }, onClick, positionClass, noTitle = false }: { disease: PageData, onClick: () => void, positionClass: string, noTitle?: boolean }) {
     return (
         <section className={'link ' + positionClass} onClick={onClick}>
-            <h2>{name}</h2>
+            {noTitle || <h2>{name}</h2>}
             <img src={image} className="flex-fit" alt={name} />
         </section>
     );
 }
 
-function DiseasePage({ disease: { name, content }, shown }: { disease: Disease, shown: boolean }) {
+function PagePopup({ disease: { name, content }, shown }: { disease: PageData, shown: boolean }) {
     return (
         <article className={classList(['shown', shown])}>
             <h2>{name}</h2>
